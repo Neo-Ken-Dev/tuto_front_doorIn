@@ -4,6 +4,13 @@
       <v-container fluid fill-height>
         <v-layout align-center justify-center>
           <v-flex xs12 sm8 md4>
+            <v-alert v-show="errorMessage"
+              border="left"
+              type="error"
+              icon="mdi-cloud-alert"
+            >
+              {{ errorMessage }}
+            </v-alert>
             <v-card class="elevation-12">
               <v-toolbar dark color="primary">
                 <v-toolbar-title>Formulaire de connexion</v-toolbar-title>
@@ -48,6 +55,7 @@ export default {
 
   data () {
     return {
+      errorMessage: null,
       formData : {
         pseudo: '',
         password: ''
@@ -61,21 +69,8 @@ export default {
         await this.$auth.loginWith('local', {data: this.formData})
         await this.$router.push('/')
       } catch (error) {
-        console.log("err :")
-        console.log(error)
-        console.log(error)
+        this.errorMessage = "Identifiant incorrect."
       }
-
-      // this.$axios.$post('/api/auth/login', this.formData)
-      //   .then(function (response) {
-      //     console.log("user connected")
-      //     console.log("response")
-      //     this.$router.push('/')
-      //   }).catch(function (err) {
-      //     console.log("err :")
-      //     console.log(err)
-      //
-      // })
     }
   },
 };
