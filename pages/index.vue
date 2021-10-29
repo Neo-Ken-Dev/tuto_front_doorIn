@@ -6,7 +6,7 @@
           <v-btn
             color="primary"
             nuxt
-            to="/welcome"
+            to="/"
           >
             Welcome
           </v-btn>
