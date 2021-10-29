@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire">
+  <v-app>
     <v-main>
       <v-container fluid fill-height>
         <v-layout align-center justify-center>
@@ -49,9 +49,6 @@
 <script>
 export default {
   name: 'Login',
-  props: {
-
-  },
 
   data () {
     return {
