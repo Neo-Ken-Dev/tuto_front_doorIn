@@ -1,16 +1,10 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
+  <v-app>
+      <v-col cols="12" sm="8" md="6">
         <v-card-actions>
           <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/"
-          >
-            Welcome
-          </v-btn>
+            Bienvenue sur la page d'accueil
         </v-card-actions>
-    </v-col>
-  </v-row>
+      </v-col>
+  </v-app>
 </template>

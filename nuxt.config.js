@@ -48,19 +48,19 @@ export default {
     strategies: {
       local: {
         token: {
-          property: 'token',
+          property: 'access_token',
           global: true,
           // required: true,
           // type: 'Bearer'
         },
         user: {
-          property: 'user',
-          // autoFetch: true
+          property: '',
+          autoFetch: false,
         },
         endpoints: {
-          login: { url: '/api/auth/login', method: 'post' },
+          login: { url: '/api/auth/login', method: 'post'},
           logout: { url: '/api/auth/logout', method: 'post' },
-          user: { url: '/api/auth/user', method: 'get' }
+          user: { url: '/api/auth/me', method: 'get'}
         }
       }
     }

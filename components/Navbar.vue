@@ -1,14 +1,45 @@
 <template>
-  <v-toolbar app>
+  <v-toolbar>
     <v-toolbar-title>
       <router-link to="/" tag="span" style="cursor: pointer">
         {{ appTitle }}
       </router-link>
     </v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-toolbar-items class="hidden-xs-only">
+
+    <v-toolbar-items v-if="isAuthenticated">
+      <v-menu offset-y transition="slide-x-transition">
+        <template v-slot:activator="{on}">
+          <v-btn
+            color="primary"
+            dark
+            v-on="on"
+          >
+            Menu
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item>
+            <v-icon left color="indigo">mdi-account</v-icon>
+            <NuxtLink :to="{name: 'myProfile'}">
+              Votre compte
+            </NuxtLink>
+          </v-list-item>
+          <v-list-item>
+            <v-icon left color="indigo">mdi-office-building-cog</v-icon>
+            <NuxtLink to="/user/immeuble">
+              Vos immeubles
+            </NuxtLink>
+          </v-list-item>
+
+        </v-list>
+      </v-menu>
+
+    </v-toolbar-items>
+
+    <v-toolbar-items v-else>
       <v-btn
-        flat
+        text
         v-for="item in menuItems"
         :key="item.title"
         :to="item.path">
@@ -16,21 +47,27 @@
         {{ item.title }}
       </v-btn>
     </v-toolbar-items>
+
   </v-toolbar>
 </template>
 
 <script>
-
+import { mapGetters } from 'vuex'
 export default {
 
   data () {
     return {
       appTitle: 'Tuto_Front_Door-in',
+
       menuItems: [
-        { title: 'S\'enregistrer', path: '/register', icon: 'mdi-account-plus' },
-        { title: 'Se connecter', path: '/login', icon: 'mdi-account' }
-      ]
+        {title: 'S\'enregistrer', path: '/register', icon: 'mdi-account-plus'},
+        {title: 'Se connecter', path: '/login', icon: 'mdi-account'}
+      ],
     }
+  },
+
+  computed: {
+    ...mapGetters(['isAuthenticated', 'loggedInUser'])
   }
 }
 </script>
