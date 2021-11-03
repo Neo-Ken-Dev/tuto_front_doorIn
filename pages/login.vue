@@ -63,8 +63,10 @@ export default {
   methods: {
     async login() {
       try {
-        await this.$auth.loginWith('local', {data: this.formData})
-        await this.$router.push('/')
+        await this.$auth.loginWith('local', {data: this.formData});
+        this.$router.push('/')
+        // this.$auth.loginWith('local', {data: this.formData})
+        // .then(() => this.$router.push('/'))
       } catch (error) {
         this.errorMessage = "Identifiant incorrect."
       }

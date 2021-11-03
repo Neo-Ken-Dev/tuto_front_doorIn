@@ -22,7 +22,19 @@
           <v-list-item>
             <v-icon left color="indigo">mdi-account</v-icon>
             <NuxtLink :to="{name: 'myProfile'}">
-              Votre compte
+              Votre profile
+            </NuxtLink>
+          </v-list-item>
+          <v-list-item>
+            <v-icon left color="indigo">mdi-account-arrow-right</v-icon>
+            <NuxtLink :to="{name: 'user-account'}">
+              Vos comptes
+            </NuxtLink>
+          </v-list-item>
+          <v-list-item>
+            <v-icon left color="indigo">mdi-account-arrow-right</v-icon>
+            <NuxtLink :to="{name: 'user-account-dialogTest'}">
+              Vos comptes 2
             </NuxtLink>
           </v-list-item>
           <v-list-item>
@@ -30,6 +42,11 @@
             <NuxtLink to="/user/immeuble">
               Vos immeubles
             </NuxtLink>
+          </v-list-item>
+
+          <v-list-item>
+            <v-icon left color="indigo">mdi-office-building-cog</v-icon>
+            <v-btn color="primary" type="submit" v-on:click="logout">Se déconnecter</v-btn>
           </v-list-item>
 
         </v-list>
@@ -54,7 +71,6 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
-
   data () {
     return {
       appTitle: 'Tuto_Front_Door-in',
@@ -67,7 +83,21 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['isAuthenticated', 'loggedInUser'])
-  }
+    ...mapGetters(['isAuthenticated', 'loggedInUser']),
+
+    // isAuthenticated() {
+    //   return this.$store.getters.isAuthenticated;  // it check if user isAuthenticated
+    // }
+  },
+
+  methods: {
+    async logout() {
+      try {
+        await this.$auth.logout('local')
+      } catch (error) {
+        this.errorMessage = "Identifiant incorrect."
+      }
+    }
+  },
 }
 </script>
