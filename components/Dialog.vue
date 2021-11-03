@@ -8,8 +8,14 @@
         Immeuble informations
       </v-card-title>
 
-      <v-card-text v-if="selectedIm">
+      <v-card-text v-if="selectedIm"> Adresse:
         {{ selectedIm.address }}
+      </v-card-text>
+      <v-card-text v-if="selectedIm"> Code immeuble:
+        {{ selectedIm.code_im }}
+      </v-card-text>
+      <v-card-text v-if="selectedIm"> Code société:
+        {{ selectedIm.code_soc }}
       </v-card-text>
       <v-divider></v-divider>
       <v-card-actions>
